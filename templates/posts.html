@@ -1,0 +1,44 @@
+{% extends "index.html" %}
+{%block pesquisa%}
+{%endblock%}
+
+{%block centro%}
+<br/>
+<div class="container">
+<div class="row">
+  <div class="col-sm-8">
+    <nav class="navbar navbar-inverse">
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/posts/java">Java<span class="sr-only">(current)</span></a></li>
+            <li><a href="/posts/python">Python</a></li>
+          </ul>
+      </div>
+    </nav>
+    {%for artigo in artigos%}
+    <div class="container">
+      <article>
+        <ul>
+          <li><h1><a href="/{{artigo.id}}">{{artigo.titulo|safe}}</a><h1>
+          <h4>{{artigo.url}}<h4>
+            <br/>
+          <h4>{{artigo.conteudo|safe}}</h4>
+          </li>
+        </ul>
+      </article>
+  </div>
+    {% empty %}
+      <li>No articles yet.</li>
+    {% endfor %}
+  </div>
+  <div class="col-sm-4">
+    <ul class="nav nav-tabs nav-stacked">
+      <li><a href="#">Java</a></li>
+      <li><a href="#">Python</a></li>
+      <li><a href="#">Java Script</a></li>
+      <li><a href="#">C#</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+{%endblock%}

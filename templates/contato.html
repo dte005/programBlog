@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{%block pesquisa%}
+{%endblock%}
+{%block centro%}
+  {%if nao_permitido%}
+    <span class="label-warning container">Usuario nao autorizado</span>
+  {%endif%}
+  <form class="form-horizontal container" method="post">
+    {%csrf_token%}
+    <div class="row">
+      <span class="col-md-1">
+        {{form.as_p}}
+      </span>
+    </div>
+    <div class="row">
+      <span class="col-md-1">
+        <input type="submit" class="btn btn-primary btn-larger" value="Enviar" />
+      </span>
+    </div>
+  </form>
+{%endblock%}

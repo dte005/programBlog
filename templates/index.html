@@ -1,0 +1,87 @@
+{% load staticfiles %}
+<!DOCTYPE>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>programBlog</title>
+  <link rel="stylesheet" type="text/css" href="{%static "css/bootstrap.min.css"%}">
+  <link rel="stylesheet" type="text/css" href="{%static "css/style.css"%}">
+  <script src="{%static "js/bootstrap.min.js"%}"></script>
+</head>
+<body>
+  <nav class="navbar navbar-inverse container">
+    <div class="container-fluid">
+      <div lass="navbar-header">
+        <a class="navbar-brand" href="/">programBlog</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          {%if usuario.username%}
+            <li><a href="/posts">Dicas & Program<span class="sr-only">(current)</span></a></li>
+            <li><a href="/contato">Contato</a></li>
+          {%endif%}
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/cadastro">Cadastre-se</a></li>
+          </ul>
+        {%block pesquisa%}
+          <form class="navbar-form navbar-left" method="post">
+            {%csrf_token%}
+            <div class="form-group">
+              {{form}}
+            </div>
+            <button type="submit" class="btn btn-default">Procurar</button>
+          </form>
+        {%endblock%}
+        <!--programacao para ver se tem alguem logado-->
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/login"><span class="glyphicon glyphicon-user"></span>{{usuario}}</a></li>
+            {%if usuario.username%}
+              <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            {%else%}
+              <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            {%endif%}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--Aqui tera o corpo cetral do projeto-->
+  <div class="container jumbotron" >
+    <h1>programBookmarks</h1>
+    <p><h4>Sobre todos os paradigmas</h4></p>
+    <!--<img class="imagem" src="{%static "/img/"%}"/>-->
+  </div>
+  {%block centro%}
+  <div class="container">
+    <div class="row">
+      <article class="container">
+        <h3>Objetivo</h3>
+        <p>Ser uma composicao tecnica para todos os amantes de paradigmas de programacao</p>
+      </article>
+
+      <!--resultadoda pesquisa-->
+      {%if artigo is not empty%}
+
+      <hr/>
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h2>Resultado da pesquisa</h2>
+        </div>
+        {%for artigos in artigo%}
+          <div class="panel-content container">
+            <h3><p>{{artigos.titulo}}</p></h3>
+            <a href="#">{{artigos.url}}</a>
+            <p>{{artigos.conteudo}}</p>
+          </div>
+        {%endfor%}
+      </div>
+
+      {%endif%}
+
+
+    </div>
+  </div>
+  {%endblock%}
+  {%include "rodape.html"%}
+  <!--<script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>-->
+</body>
+</html>

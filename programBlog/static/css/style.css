@@ -1,0 +1,22 @@
+.jumbotron-color{
+  background-color: slategray;
+  padding: 10;
+}
+.footer-leters{
+  color: yellow;
+}
+
+.imagem-wrapper {
+    width: 800px;
+    height: 120px;
+    overflow: hidden;
+    position: relative; /* Para fazer que a imagem com position-absolute respeite a sua posição consoante este selector, ou evitar que saia do mesmo */
+}
+.imagem {
+    width: 2048px;
+    /* código abaixo centra a imagem ao centro */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}

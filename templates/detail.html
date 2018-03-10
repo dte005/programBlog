@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+{%block pesquisa%}
+{%endblock%}
+{%block centro%}
+<div class="container">
+  <article>
+    <h1>{{artigo.titulo|safe}}</h1>
+    <p>{{artigo.url|safe}}</p>
+    <p>Published: {{ artigo.pub_date}}</p>
+    <p>{{artigo.conteudo}}</p>
+  </article>
+</div>
+{%endblock%}
