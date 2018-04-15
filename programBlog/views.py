@@ -33,6 +33,13 @@ class Principal(TemplateView):
     template_name = "index.html"
     form_class = FormPesquisa
 
+    def __getusuario(self, request):
+        __usuario = request.user
+        if __usuario == "AnonymousUser":
+            __usuario = "Ninguem"
+            return __usuario
+        return __usuario
+        
     #passando um context para a pagina principal para TemplateView
     #def get_context_data(self, *args, **kwargs):
     #    context = super(Principal, self).get_context_data(**kwargs)
@@ -47,16 +54,16 @@ class Principal(TemplateView):
 
     #TemplateView, View
     def get(self, request, *args, **kwargs):
-        usuario = request.user
-        return render(request, self.template_name, {'form':self.form_class, 'usuario':usuario})
+        __usuario = request.user
+        return render(request, self.template_name, {'form':self.form_class, 'usuario':__usuario})
 
     def post(self,request, *args, **kwargs):
-        usuario = request.user
+        __usuario = request.user
         form = self.form_class(request.POST)
         if form.is_valid():
             q = form.cleaned_data['lupa']
             resultado = Artigo.objects.filter(titulo__contains=q)
-            return render(request, self.template_name, {'form':self.form_class, 'artigo':resultado, 'usuario':usuario})
+            return render(request, self.template_name, {'form':self.form_class, 'artigo':resultado, 'usuario':__usuario})
 
 #exemplo de class based view
 #retirado de listview para que possamos passar o usuario
