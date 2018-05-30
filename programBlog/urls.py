@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from django.contrib import admin
-from programBlog.views import Principal, Contato, Posts, ArtigoDetalhes, Login, Logout, Cadastro, MenuFiltroPosts
+#foi retirado, pois as views serao chamadas direto do aplicativo
+#from programBlog.views import Principal, Contato, Posts, ArtigoDetalhes, Login, Logout, Cadastro, MenuFiltroPosts
+from artigos.views import Principal, Contato, Posts, ArtigoDetalhes, Login, Logout, Cadastro, MenuFiltroPosts
 from django.conf import settings
 from django.conf.urls.static import static
 

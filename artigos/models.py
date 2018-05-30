@@ -7,22 +7,24 @@ from django.db.models import permalink
 escolhas = (
     ("Python", "python"),
     ("Linux", "linux"),
-    ("Javascript", "javascript"),
+    ("JavaS", "javaS"),
     ("PHP", "php"),
     ("Java", "java"),
     ("Jquery", "jquery"),
-    ("Django", "django"),)
+    ("Django", "django"),
+    ("Sharp", "sharp"),)
 
 class Agencia(models.Model):
     nome = models.CharField(max_length=50)
     site = models.URLField()
-
-    #def __str__(self):
-    #    return nome
+    def __str__(self):
+        return '%s' % (self.nome)
 
 class Autor(models.Model):
     nome = models.CharField(max_length=100)
     email = models.EmailField()
+    def __str__(self):
+        return '%s' % (self.nome)
 
 class Artigo(models.Model):
     titulo = models.CharField('Titulo:',max_length=80)
