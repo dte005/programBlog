@@ -34,13 +34,6 @@ class Principal(TemplateView):
     template_name = "index.html"
     form_class = FormPesquisa
 
-    def __getusuario(self, request):
-        __usuario = request.user
-        if __usuario == "AnonymousUser":
-            __usuario = "Ninguem"
-            return __usuario
-        return __usuario
-        
     #passando um context para a pagina principal para TemplateView
     #def get_context_data(self, *args, **kwargs):
     #    context = super(Principal, self).get_context_data(**kwargs)
@@ -103,13 +96,14 @@ class MenuFiltroPosts(LoginRequiredMixin, TemplateView):
     #    context['artigos'] = Artigo.objects.filter(titulo__contains='java')
     #    return context
 
-class Contato(LoginRequiredMixin, FormView):
+class Contato(LoginRequiredMixin, FormView, TemplateView):
     template_name = "contato.html"
     form_class = FormContato
     success_url = 'http://127.0.0.1:8000/'
 
     def form_valid(self, form):
         return super(Login, self).form_valid(form)
+    
 
     def post(self, request, *args, **kwargs):
         pass
@@ -176,7 +170,7 @@ class Login(FormView):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         flag_nao_autorizado = False
-        estado = "vazio"
+        # estado = "vazio"
         if form.is_valid():
             usuario = form.cleaned_data['usuario']
             senha = form.cleaned_data['senha']
