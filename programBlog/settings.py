@@ -4,9 +4,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'pbrfteaq_mwvsaz+(=&cx*1tqpi3+w)n630g^f8z%l37r1uzxi'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['178.62.19.157']
 
 
 INSTALLED_APPS = [
@@ -59,8 +59,12 @@ WSGI_APPLICATION = 'programBlog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'programBlog',
+        'USER': 'dte005',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -94,3 +98,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
