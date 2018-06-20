@@ -100,3 +100,8 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+try:
+    from  settings_local import *
+except Exception:
+    pass
