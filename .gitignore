@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 
 programBlog/settings_local.py
+*.pyc
 
 # C extensions
 *.so
