@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^logout/$', Logout.as_view(), name='logout'),
     url(r'^cadastro/$', Cadastro.as_view(), name='cadastro'),
     url(r'^posts/(?P<slug>[-\w]+)/$', MenuFiltroPosts.as_view(), name='filtroposts'),
+    #url(r'^posts/filter/$', MenuFiltroPosts.as_view(), name='filtroposts'),
     #url(r'^(?P<url>[-\w]+)/$', ArtigoDetalhes.as_view(), name='detalhes'),
     url(r'^(?P<pk>\d)', ArtigoDetalhes.as_view(), name='detalhes'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

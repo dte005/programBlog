@@ -11,6 +11,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 from artigos.forms import *
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
 #hierarquia de classes do django:
@@ -48,16 +49,14 @@ class Principal(TemplateView):
 
     #TemplateView, View
     def get(self, request, *args, **kwargs):
-        __usuario = request.user
-        return render(request, self.template_name, {'form':self.form_class, 'usuario':__usuario})
+        return render(request, self.template_name, {'form':self.form_class})
 
     def post(self,request, *args, **kwargs):
-        __usuario = request.user
         form = self.form_class(request.POST)
         if form.is_valid():
             q = form.cleaned_data['lupa']
             resultado = Artigo.objects.filter(titulo__contains=q)
-            return render(request, self.template_name, {'form':self.form_class, 'artigo':resultado, 'usuario':__usuario})
+            return render(request, self.template_name, {'form':self.form_class, 'artigo':resultado})
 
 #exemplo de class based view
 #retirado de listview para que possamos passar o usuario
@@ -68,33 +67,33 @@ class Posts(LoginRequiredMixin, TemplateView):
 
     #@method_decorator(login_required)
     def get(self, request, *args, **kwargs):
-        usuario = request.user
         artigo = Artigo.objects.all()
-        return render(request, self.template_name, {'artigos':artigo, 'usuario':usuario})
+        return render(request, self.template_name, {'artigos':artigo})
 
     #metodo usuado para listView
     #def get_context_data(self, **kwargs):
     #    context = super(Posts, self).get_context_data(**kwargs)
     #    return context
 
-class MenuFiltroPosts(LoginRequiredMixin, TemplateView):
+class MenuFiltroPosts(LoginRequiredMixin, ListView):
     template_name='posts.html'
-    model = Artigo
-    #context_object_name = 'artigos'
+    #model = Artigo
+    context_object_name = 'artigos'
+    paginate_by = 2
 
     #exemplo de como pegar o slug field do urls
-    def get(self, request, *args, **kwargs):
-        usuario = request.user
-        artigo = Artigo.objects.filter(titulo__contains= kwargs['slug'])
-        return render(request, self.template_name, {'artigos':artigo, 'usuario':usuario})
+    # def get(self, request, *args, **kwargs):
+    #     artigo = Artigo.objects.filter(titulo__contains= kwargs['slug'])
+    #     paginator = Paginator(artigo, 1)
+    #     page = request.GET.get('page')
+    #     artigo = paginator.get_page(page)
+    #     return render(request, self.template_name, {'artigos':artigo})
 
-    # def get_queryset(self):
-    #     return Artigo.objects.filter(titulo__contains='java')
+    def get_queryset(self):
+        slug = self.kwargs['slug']
+        print("slug", slug)
+        return Artigo.objects.filter(titulo__contains=slug)
 
-    #def get_context_data(self, **kwargs):
-    #    context = super(MenuFiltroPosts, self).get_context_data(**kwargs)
-    #    context['artigos'] = Artigo.objects.filter(titulo__contains='java')
-    #    return context
 
 class Contato(LoginRequiredMixin, FormView, TemplateView):
     template_name = "contato.html"
@@ -123,9 +122,8 @@ class ArtigoDetalhes(LoginRequiredMixin, TemplateView):
     #     return context
 
     def get(self, request, *args, **kwargs):
-        usuario = request.user
         consulta = Artigo.objects.get(id = kwargs['pk'])
-        return render(request, self.template_name, {'artigo':consulta, 'usuario':usuario})
+        return render(request, self.template_name, {'artigo':consulta})
 
 # class Login(TemplateView):
 #     template_name = "login.html"
