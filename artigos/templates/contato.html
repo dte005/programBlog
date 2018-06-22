@@ -4,10 +4,20 @@
 {%endblock%}
 {%block centro%}
   {%if nao_permitido%}
-    <span class="label-warning container">Usuario nao autorizado</span>
+  <div class="container">
+    <div class="row">
+      <span class="label-warning">Usuario nao autorizado</span>
+    </div>
+  </div>
   {%endif%}
-  <form class="form-horizontal container" method="post">
+  <div class="container lead">
+    <div class="row">
+        <h3><ins>CONTATO</ins></h3>
+    </div>
+  </div> 
+  <form class="form-horizontal" method="post">
     {%csrf_token%}
+    <div class="container">
     <div class="row">
       <span class="col-md-1">
         {{form.as_p}}
@@ -18,5 +28,6 @@
         <input type="submit" class="btn btn-primary btn-larger" value="Enviar" />
       </span>
     </div>
+  </div>
   </form>
 {%endblock%}

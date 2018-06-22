@@ -2,12 +2,15 @@
 {%block pesquisa%}
 {%endblock%}
 {%block centro%}
-<div class="container">
-  <article>
-    <h1>{{artigo.titulo|safe}}</h1>
-    <p>{{artigo.url|safe}}</p>
-    <p>Published: {{ artigo.pub_date}}</p>
-    <p>{{artigo.conteudo}}</p>
-  </article>
+<div class="container lead" style="border: 2px solid black;">
+	<div class="row">
+  		<article>
+  		<h6 style="color:grey;"><p>Published: {{ artigo.pub_date}}</p></h6>
+    	<h1><ins>{{artigo.titulo|safe}}</ins></h1>
+    	<h6 style="color:grey"><p>{{artigo.url|safe}}</p></h6>
+    	<p class="lead">{{artigo.conteudo}}</p>
+    	<h6><p style="color:grey">Autor: {{artigo.autores}}</p></h6>
+  		</article>
+ 	</div>
 </div>
 {%endblock%}

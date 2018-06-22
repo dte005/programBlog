@@ -60,24 +60,16 @@ class Principal(TemplateView):
 
 #exemplo de class based view
 #retirado de listview para que possamos passar o usuario
-class Posts(LoginRequiredMixin, TemplateView):
+class Posts(LoginRequiredMixin, ListView):
     template_name='posts.html'
-    model = Artigo
-    #context_object_name = 'artigos'
+    context_object_name = 'artigos'
+    paginate_by = 3
 
-    #@method_decorator(login_required)
-    def get(self, request, *args, **kwargs):
-        artigo = Artigo.objects.all()
-        return render(request, self.template_name, {'artigos':artigo})
-
-    #metodo usuado para listView
-    #def get_context_data(self, **kwargs):
-    #    context = super(Posts, self).get_context_data(**kwargs)
-    #    return context
+    def get_queryset(self):
+        return Artigo.objects.all()
 
 class MenuFiltroPosts(LoginRequiredMixin, ListView):
     template_name='posts.html'
-    #model = Artigo
     context_object_name = 'artigos'
     paginate_by = 2
 
@@ -91,7 +83,6 @@ class MenuFiltroPosts(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         slug = self.kwargs['slug']
-        print("slug", slug)
         return Artigo.objects.filter(titulo__contains=slug)
 
 
@@ -124,38 +115,6 @@ class ArtigoDetalhes(LoginRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         consulta = Artigo.objects.get(id = kwargs['pk'])
         return render(request, self.template_name, {'artigo':consulta})
-
-# class Login(TemplateView):
-#     template_name = "login.html"
-#     form_class = Formlogin
-#
-#     def get(self, request, *args, **kwargs):
-#         #if request.user.is_authenticate:
-#
-#         return render(request, self.template_name, {'form':self.form_class})
-#
-#     def post(self, request, *args, **kwargs):
-#         form = self.form_class(request.POST)
-#         flag_nao_autorizado = False
-#         estado = "vazio"
-#
-#         if form.is_valid():
-#             usuario = form.cleaned_data['usuario']
-#             senha = form.cleaned_data['senha']
-#             user = authenticate(username=usuario, password=senha)
-#             if user is not None:
-#                 if user.is_active:
-#                     if user.is_staff:
-#                         login(request, user)
-#                         return redirect('http://127.0.0.1:8000/')
-#                     else:
-#                         flag_nao_autorizado = True
-#                 else:
-#                     flag_nao_autorizado = True
-#             else:
-#                 flag_nao_autorizado = True
-#
-#         return render(request, self.template_name, {'form':self.form_class, 'nao_permitido':flag_nao_autorizado})
 
 class Login(FormView):
     template_name = "login.html"

@@ -6,17 +6,24 @@
 {%if erro%}
   {{erro}}
 {%endif%}
-  <form class="form-horizontal container" method="post">
-    {%csrf_token%}
+  <div class="container lead">
     <div class="row">
-      <span class="col-md-1">
-        {{ form.as_p }}
-      </span>
+        <h3><ins>Cadastro</ins></h3>
     </div>
-    <div class="row">
-      <span class="col-md-1">
-        <input type="submit" class="btn btn-primary btn-larger" value="cadastre-se"/>
-      </span>
+  </div>
+  <form class="form-horizontal" method="post">
+    {%csrf_token%}
+    <div class="container">
+      <div class="row">
+        <span class="col-md-1">
+          {{ form.as_p }}
+        </span>
+      </div>
+      <div class="row">
+        <span class="col-md-1">
+          <input type="submit" class="btn btn-primary btn-larger" value="cadastre-se"/>
+        </span>
+      </div>
     </div>
   </form>
 {%endblock%}

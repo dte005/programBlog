@@ -51,21 +51,31 @@
   </div>
   <!--termina o menu-->
   <!--Aqui tera o corpo cetral do projeto-->
-  <div class="container jumbotron" >
-    <h1>programBookmarks</h1>
-    <p><h4>Sobre todos os paradigmas</h4></p>
-    <!--<img class="imagem" src="{%static "/img/"%}"/>-->
+  <div class="container jumbotron img-rounded" style="background-image: url({%static "/img/circuito.jpg"%}); background-size: cover;">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 style="color:orange;">programBookmarks</h1>
+        <p><h4 style="color:orange;">Sobre todos os paradigmas</h4></p>
+      </div>
+      <div class="jumbtron col-md-6">
+        <!--<img class="imagem" src="{%static "/img/principal.jpg"%}"/>-->
+      </div>
+    </div>
+    <!--{%static "/img/"%}-->
   </div>
   {%block centro%}
   <div class="container">
     <div class="row">
-      <article class="container">
-        <h3>Objetivo</h3>
-        <p>Ser uma composição técnica para todos os amantes de paradigmas de programação</p>
-        <p>Este site contem informações postadas a respeito de muitas tecnologias disponíveis no mercado e também matérias que com conteúdo sobre sistemas operacionais, principalmente voltado para linux MINT</p>
-        <p>Espero que gostem!!</p>
-      </article>
-
+      <div class="container lead">
+        <div class="row">
+        <article class="lead">
+          <h3>Objetivo</h3>
+          <p>Ser uma composição técnica para todos os amantes de paradigmas de programação</p>
+          <p>Este site contem informações postadas a respeito de muitas tecnologias disponíveis no mercado e também matérias que com conteúdo sobre sistemas operacionais, principalmente voltado para linux MINT</p>
+          <p>Espero que gostem!!</p>
+        </article>
+        </div>
+      </div>
       <!--resultadoda pesquisa-->
       {%if artigo is not empty%}
 
