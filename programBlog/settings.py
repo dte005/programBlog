@@ -6,7 +6,7 @@ SECRET_KEY = 'pbrfteaq_mwvsaz+(=&cx*1tqpi3+w)n630g^f8z%l37r1uzxi'
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['178.62.19.157']
+ALLOWED_HOSTS = ['178.62.19.157', 'programblog.life']
 
 
 INSTALLED_APPS = [
