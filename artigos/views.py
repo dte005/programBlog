@@ -119,7 +119,7 @@ class ArtigoDetalhes(LoginRequiredMixin, TemplateView):
 class Login(FormView):
     template_name = "login.html"
     form_class = Formlogin
-    success_url = 'http://127.0.0.1:8000/'
+    success_url = 'http://programblog.life'
 
     def form_valid(self, form):
         return super(Login, self).form_valid(form)
@@ -169,7 +169,7 @@ class Logout(TemplateView):
 class Cadastro(FormView):
     template_name = "cadastro.html"
     form_class = FormCadastro
-    success_url = 'http://127.0.0.1:8000/'
+    success_url = 'http://programblog.life'
 
     def form_valid(self, form):
         return super(Login, self).form_valid(form)
