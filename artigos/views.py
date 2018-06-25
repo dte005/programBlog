@@ -195,7 +195,7 @@ class Cadastro(FormView):
                 except Exception as err:
                     erro = err
 
-                return redirect('http://127.0.0.1:8000/')
+                return redirect('http://programblog.life')
             else:
                 erro = "Senha invalida"
 
