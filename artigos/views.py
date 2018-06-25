@@ -136,7 +136,7 @@ class Login(FormView):
                 if user.is_active:
                     if user.is_staff:
                         login(request, user)
-                        return redirect('http://127.0.0.1:8000/')
+                        return redirect('http://programblog.life/')
                     else:
                         flag_nao_autorizado = True
                 else:
