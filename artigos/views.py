@@ -89,7 +89,7 @@ class MenuFiltroPosts(LoginRequiredMixin, ListView):
 class Contato(LoginRequiredMixin, FormView, TemplateView):
     template_name = "contato.html"
     form_class = FormContato
-    success_url = 'http://127.0.0.1:8000/'
+    success_url = 'http://programblog.life'
 
     def form_valid(self, form):
         return super(Login, self).form_valid(form)
